@@ -38,15 +38,13 @@ def DFS_Traversal(cost, start_point, goals):
     path.append(start_point)
     i = 0
     for node in cost[start_point]:
-        print(i, "-", node)
-
         if node > 0:
             stack.append(i)
-            print("2", i, "-", node)
         i += 1
 
     while stack:
         nodeM = stack.pop()
+        print(nodeM)
         if nodeM not in visited:
             visited.append(nodeM)
             if nodeM in goals:
