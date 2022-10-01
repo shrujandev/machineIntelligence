@@ -1,6 +1,6 @@
 [submodule "L3"]
 	path = L3
-	url = .\\L3\\
+	url = git@github.com:shrujandev/MI_DecisionTree.git
 [submodule "L2"]
 	path = L2
 	url = git@github.com:shrujandev/MI_SearchAlgo.git
