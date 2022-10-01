@@ -3,4 +3,4 @@
 	url = .\\L3\\
 [submodule "L2"]
 	path = L2
-	url = .\\L2\\
+	url = git@github.com:shrujandev/MI_SearchAlgo.git
