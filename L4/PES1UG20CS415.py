@@ -69,7 +69,16 @@ class KNN:
             Note that each row of both neigh_dists and idx_of_neigh must be SORTED in increasing order of distance
         """
         # TODO
-        pass
+        lni = self.find_distance(x)
+        retList = [[], []]
+
+        for i in range(len(lni)):
+            indices = [i for i in range(self.data.shape[0])]
+            d = list(list(zip(*list(sorted(zip(lni[i], indices)))))[0])
+            e = list(list(zip(*list(sorted(zip(lni[i], indices)))))[1])
+            retList[0].append(d[0:self.k_neigh])
+            retList[1].append(e[0:self.k_neigh])
+        return retList
 
     def predict(self, x):
         """
