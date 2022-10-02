@@ -1,3 +1,4 @@
+from decimal import Decimal
 import numpy as np
 
 
@@ -42,7 +43,17 @@ class KNN:
             (N x M) Matrix (N Number of inputs, M number of samples in the train dataset)(float)
         """
         # TODO
-        pass
+        retArr = []
+
+        for i in range(x.shape[0]):
+            testPoint = x[i]
+            lni = []
+            for j in range(self.data.shape[0]):
+                lni.append(self.minkowskiDistance(
+                    testPoint, self.data[j], self.p))
+            retArr.append(lni)
+
+        return retArr
 
     def k_neighbours(self, x):
         """
@@ -83,3 +94,13 @@ class KNN:
         """
         # TODO
         pass
+
+    def pRoot(self, value, root):
+        rootVal = 1/float(root)
+        retVal = round(Decimal(value)**Decimal(rootVal), 3)
+        return retVal
+
+    def minkowskiDistance(self, testPoint, point, p_value):
+        val = float(self.pRoot(sum(pow(abs(m-n), p_value)
+                                   for m, n in zip(testPoint, point)), p_value))
+        return val
