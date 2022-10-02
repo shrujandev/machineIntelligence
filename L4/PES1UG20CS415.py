@@ -45,13 +45,15 @@ class KNN:
         """
         # TODO
         retArr = []
-
         for i in range(x.shape[0]):
             testPoint = x[i]
             lni = []
-            for j in range(self.data.shape[0]):
+            j = 0
+            while j < self.data.shape[0]:
                 lni.append(self.minkowskiDistance(
                     testPoint, self.data[j], self.p))
+                j += 1
+
             retArr.append(lni)
 
         return retArr
@@ -72,13 +74,14 @@ class KNN:
         # TODO
         lni = self.find_distance(x)
         retList = [[], []]
-
-        for i in range(len(lni)):
+        count = 0
+        while count < len(lni):
             indices = [i for i in range(self.data.shape[0])]
-            d = list(list(zip(*list(sorted(zip(lni[i], indices)))))[0])
-            e = list(list(zip(*list(sorted(zip(lni[i], indices)))))[1])
+            d = list(list(zip(*list(sorted(zip(lni[count], indices)))))[0])
+            e = list(list(zip(*list(sorted(zip(lni[count], indices)))))[1])
             retList[0].append(d[0:self.k_neigh])
             retList[1].append(e[0:self.k_neigh])
+            count += 1
         return retList
 
     def predict(self, x):
