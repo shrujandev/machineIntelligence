@@ -94,15 +94,16 @@ class KNN:
         retArr = []
         for i in range(len(indices)):
             f = {}
-            for j in range(len(indices[i])):
+            j = 0
+            while j < len(indices[i]):
                 if self.target[indices[i][j]] in f:
                     f[self.target[indices[i][j]]] += 1
                 else:
                     f[self.target[indices[i][j]]] = 1
+                j += 1
             maxF = 0
             maxK = None
 
-            rangeF = range(min(f), max(f)+1)
             i = min(f)
 
             while i < max(f)+1:
