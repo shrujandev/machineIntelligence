@@ -1,4 +1,5 @@
 from decimal import Decimal
+from textwrap import indent
 import numpy as np
 
 
@@ -89,7 +90,28 @@ class KNN:
             pred: Vector of length N (Predicted target value for each input)(int)
         """
         # TODO
-        pass
+        indices = self.k_neighbours(x)[1]
+        retArr = []
+        for i in range(len(indices)):
+            f = {}
+            for j in range(len(indices[i])):
+                if self.target[indices[i][j]] in f:
+                    f[self.target[indices[i][j]]] += 1
+                else:
+                    f[self.target[indices[i][j]]] = 1
+            maxF = 0
+            maxK = None
+
+            rangeF = range(min(f), max(f)+1)
+            i = min(f)
+
+            while i < max(f)+1:
+                if f[i] > maxF:
+                    maxF = f[i]
+                    maxK = i
+                i += 1
+            retArr.append(maxK)
+        return retArr
 
     def evaluate(self, x, y):
         """
