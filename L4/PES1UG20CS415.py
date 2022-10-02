@@ -125,7 +125,9 @@ class KNN:
             accuracy : (float.)
         """
         # TODO
-        pass
+        pred = self.predict(x)
+        right = np.sum(pred == y)
+        return 100*(right)/len(y)
 
     def pRoot(self, value, root):
         rootVal = 1/float(root)
