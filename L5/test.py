@@ -1,5 +1,3 @@
-# PES1UG20CS415
-# SHRUJAN
 import numpy as np
 
 
@@ -165,10 +163,11 @@ class Tensor:
         else:
             if node1.requires_grad:
                 node1.grad += np.multiply(np.matmul(np.ones_like(node1.arr),
-                                          node2.arr.transpose()), gradients)
+                                                    node2.arr.transpose()), gradients)
             if node2.requires_grad:
                 node2.grad += np.multiply(np.matmul(np.ones_like(node2.arr),
-                                          node2.arr).transpose(), gradients)
+                                                    node1.arr).transpose(), gradients)
+
         return (node1.grad, node2.grad)
 
     def backward(self, gradients=None):
@@ -190,14 +189,17 @@ class Tensor:
             Nothing. (The gradients of leaf have to set in their respective attribute(leafobj.grad))
         """
         # TODO
+
         if self.requires_grad == None:
             return
         if self.history[0] == 'add':
+
             gradient = self.grad_add(gradients)
             if self.history[1]:
                 self.history[1].backward(gradient[0])
             if self.history[2]:
                 self.history[2].backward(gradient[1])
+
         elif self.history[0] == 'matmul':
             gradient = self.grad_matmul(gradients)
             if self.history[1]:
