@@ -1,3 +1,5 @@
+# PES1UG20CS415
+# SHRUJAN
 from sklearn.svm import SVC
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import *
@@ -33,4 +35,8 @@ class SVM:
         """
 
         # TODO
-        pass
+        trainX = self.X
+        trainY = self.y
+        model = Pipeline([('scaler', StandardScaler()), ('svc', SVC())])
+        model.fit(trainX, trainY)
+        return model
